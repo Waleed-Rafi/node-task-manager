@@ -1,0 +1,40 @@
+<br>
+<h1 class="display-4"><a href="/dashboard" class="fas fa-angle-double-left"></a>Your Tasks</h1><br>
+<% if(tasks.length === 0) { %>
+<center>
+    <h2>No Tasks...</h2>
+</center>
+<% } %>
+<% if(tasks.length > 0) { %>
+<center>
+    <a href="/users/read" class="btn btn-primary">All Tasks <i class="fas fa-angle-double-down"></i></a>
+    <a href="/users/read?completed=true" class="btn btn-secondary">Completed <i
+            class="fas fa-angle-double-down"></i></a>
+    <a href="/users/read?completed=false" class="btn btn-success">Incomplete <i
+            class="fas fa-angle-double-down"></i></a>
+    <a href="/users/read?sortBy=createdAt_desc" class="btn btn-dark">Recent <i class="fas fa-angle-double-down"></i></a>
+    <a href="/users/read?sortBy=createdAt_asc" class="btn btn-info">Old <i class="fas fa-angle-double-down"></i></a>
+</center><br>
+
+<% for(let i=0;i<tasks.length;i++) { %>
+<div class="card text-center">
+    <div class="card-header">
+        <h3>Task <%= i+1 %></h3>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><%= tasks[i].title %></h5>
+        <p class="card-text"><%= tasks[i].description %></p>
+        <p class="card-text"><b><%= tasks[i].completed %></b></p>
+        <a href="users/update/<%= tasks[i]._id %>" class="btn btn-success">Update</a>
+    </div>
+    <div class="card-footer text-muted">
+        <a href="users/delete/<%= tasks[i]._id %>" class="btn btn-primary">Delete</a>
+    </div>
+</div><br>
+<% } %>
+<center>
+    <% for(let i=1;i<(totalTask+5)/5;i++) { %>
+    <a href="/users/read?limit=5&skip=<%= (i-1)*5 %>" class="btn btn-dark"><%= i %></a>
+    <% } %>
+</center>
+<% } %>
