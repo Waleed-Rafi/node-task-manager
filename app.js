@@ -12,7 +12,6 @@ require("./config/passport")(passport);
 
 // DB Config
 const db = process.env.DB
-//'mongodb+srv://taskapp:waleed@cluster0-ysrg2.mongodb.net/login?retryWrites=true&w=majority'
 
 // Connect to MongoDB
 mongoose
